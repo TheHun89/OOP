@@ -640,7 +640,7 @@ Join allows one thread to wait for the completion of another
 | The String class overrides the equals() method of Object class. | So you can compare the contents of two strings by equals() method. |	The StringBuffer class doesn't override the equals() method of Object class. |
 
 
-| StringBuffer	StringBuilder
+| StringBuffer |	StringBuilder |
 |---|---|
 | StringBuffer is synchronized, i.e., thread safe. It means two threads can't call the methods of StringBuffer simultaneously. |	StringBuilder is non-synchronized,i.e., not thread safe. It means two threads can call the methods of StringBuilder simultaneously. |
 | StringBuffer is less efficient than StringBuilder. |	StringBuilder is more efficient than StringBuffer. |
