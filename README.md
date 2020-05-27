@@ -483,19 +483,19 @@ An **enum** type is a special data type that enables for a variable to be a set 
 * Enums are thread safe and popularly used in Singletons.
 
 
-Nested Class – Static and Non Static/Inner
+**Nested Class** – **Static** and **Non Static/Inner**
 
-Why use Nested Classes?
+**Why use Nested Classes?**
 They’re a way to logically group classes only used in one place, increases encapsulation, more readable/useable code.  Use them if your requirements are similar to those of a local class, you want to make the type more widely available and you don’t require access to local variables or method parameters
 
 Non-static nested classes (inner classes) have access to other members of the enclosing class, even if they are declared private. Static nested classes do not have access to other members of the enclosing class.
 
 An instance of an Inner Class can exist only within an instance of the outer class.  
 
-There are 2 types of Inner Classes – Local and Anonymous
+There are 2 types of Inner Classes – **Local** and **Anonymous**
 
-Shadowing
-If a declaration of a type (such as a member variable or a parameter name) in a particular scope (such as an inner class or a method definition) has the same name as another declaration in the enclosing scope, then the declaration shadows the declaration of the enclosing scope. You cannot refer to a shadowed declaration by its name alone.
+**Shadowing**
+If a declaration of a type (such as a member variable or a parameter name) in a particular scope (such as an inner class or a method definition) has the same name as another declaration in the enclosing scope, then the declaration shadows the declaration of the enclosing scope. **You cannot refer to a shadowed declaration by its name alone.**
  ```
 public class ShadowTest {
 
@@ -530,50 +530,58 @@ This example defines three variables named x: the member variable of the class S
 System.out.println("this.x = " + this.x);
 ```
 Refer to member variables that enclose larger scopes by the class name to which they belong. For example, the following statement accesses the member variable of the class ShadowTest from the method methodInFirstLevel:
+```
 System.out.println("ShadowTest.this.x = " + ShadowTest.this.x);
+```
 
-Local class – defined in a block (group of zero or more statements between balanced brances) typically in the body of a method; has access to members of its enclosting class and local variables ONLY IF they’re declared final
+**Local class** – defined in a block (group of zero or more statements between balanced brances) typically in the body of a method; has access to members of its enclosting class and local variables ONLY IF they’re declared final
 
-Anonymous class – similar to local classes but do NOT have a name (expresssions); use if you need to use a local class only once and if you need to declare fields/additional methods
+**Anonymous class** – similar to local classes but do NOT have a name (expresssions); use if you need to use a local class only once and if you need to declare fields/additional methods
 
-Lambda Expressions – use if…
+**Lambda Expressions** – use if…
 1.	You are encapsulating a single unit of behavior that you want to pass to other code (for example, you want a certain action performed on each element of a collection, when a process is completed, or when a process encounters an error)
 2.	You need a simple instance of a functional interface and none of the preceding criteria apply (for example, you do not need a constructor, a named type, fields, or additional methods)
-Syntax:
+**Syntax:**
+```
  lambda operator -> body
-https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
+ ```
+
+[Lambda Expressions](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)
 
 
 
-Compile-time: the time period in which you, the developer, are compiling your code.
-Run-time: the time period which a user is running your piece of software.
+**Compile-time**: the time period in which you, the developer, are compiling your code.
+**Run-time**: the time period which a user is running your piece of software.
 
-An exception is an event that occurs during the execution of a program that disrupts the normal flow of instructions.  When an error occurs within a method, the method creates an object and hands it off to the runtime system. The object, called an exception object, contains information about the error, including its type and the state of the program when the error occurred.  After a method throws an exception, the runtime system attempts to find something to handle it. The set of possible "somethings" to handle the exception is the ordered list of methods that had been called to get to the method where the error occurred. The list of methods is known as the call stack.  The runtime system searches the call stack for a method that contains a block of code that can handle the exception. This block of code is called an exception handler. The search begins with the method in which the error occurred and proceeds through the call stack in the reverse order in which the methods were called. When an appropriate handler is found, the runtime system passes the exception to the handler. An exception handler is considered appropriate if the type of the exception object thrown matches the type that can be handled by the handler.
+An **exception** is an event that occurs during the execution of a program that disrupts the normal flow of instructions.  When an error occurs within a method, the method creates an object and hands it off to the runtime system. The object, called an exception object, contains information about the error, including its type and the state of the program when the error occurred.  After a method throws an exception, the runtime system attempts to find something to handle it. The set of possible "somethings" to handle the exception is the ordered list of methods that had been called to get to the method where the error occurred. The list of methods is known as the call stack.  The runtime system searches the call stack for a method that contains a block of code that can handle the exception. This block of code is called an exception handler. The search begins with the method in which the error occurred and proceeds through the call stack in the reverse order in which the methods were called. When an appropriate handler is found, the runtime system passes the exception to the handler. An exception handler is considered appropriate if the type of the exception object thrown matches the type that can be handled by the handler.
 The exception handler chosen is said to catch the exception. If the runtime system exhaustively searches all the methods on the call stack without finding an appropriate exception handler, as shown in the next figure, the runtime system (and, consequently, the program) terminates.
 
-
+![Image](https://github.com/TheHun89/OOP/blob/master/images/exceptionCall.png)
+![Image](https://github.com/TheHun89/OOP/blob/master/images/exceptionCatch.png)
 
 Exceptions must be thrown using
 1.	try/catch or
 2.	specify requirement (method that specifies it can throw the exception)
 
 Three Types: (Runtime and Error are both considered Unchecked; Runtime exceptions are not subject to the Catch or Specify Requirement.)
-*	Checked are the exceptions that are checked at compile time. If some code within a method throws a checked exception, then the method must either handle the exception or it must specify the exception using throws keyword.  Extends Throwable class except RunTimeException and Error (user error)
-*	Runtime These are exceptional conditions that are internal to the application, and that the application usually cannot anticipate or recover from.  Classes that extend RunTimeException (code error)
-*	Error are external to the application, and that the application usually cannot anticipate or recover from
+*	**Checked** are the exceptions that are checked at compile time. If some code within a method throws a checked exception, then the method must either handle the exception or it must specify the exception using throws keyword.  Extends Throwable class except RunTimeException and Error (user error)
+*	**Runtime** These are exceptional conditions that are internal to the application, and that the application usually cannot anticipate or recover from.  Classes that extend RunTimeException (code error)
+*	**Error** are external to the application, and that the application usually cannot anticipate or recover from
+
+![Image](https://github.com/TheHun89/OOP/blob/master/images/throwable.png)
+![Image](https://github.com/TheHun89/OOP/blob/master/images/exceptionFlow.png)
 
 
-
-
-
-throw keyword	throws keyword
-1. The throw keyword is used to throw an exception explicitly.	The throws keyword is used to declare an exception.
-2. The checked exceptions cannot be propagated with throw only.	The checked exception can be propagated with throws
-3. The throw keyword is followed by an instance.	The throws keyword is followed by class.
-4. The throw keyword is used within the method.	The throws keyword is used with the method signature.
-5. You cannot throw multiple exceptions.	You can declare multiple exceptions, e.g., public void method()throws IOException, SQLException.
+| throw keyword | throws keyword |
+|---|---|
+| The throw keyword is used to throw an exception explicitly.	| The throws keyword is used to declare an exception. |
+| The checked exceptions cannot be propagated with throw only.	The checked exception can be propagated with throws |
+| The throw keyword is followed by an instance.	The throws keyword is followed by class. |
+| The throw keyword is used within the method.	The throws keyword is used with the method signature. |
+| You cannot throw multiple exceptions.	| You can declare multiple exceptions, e.g., public void method()throws IOException, SQLException. |
 
 Throw Statement:
+
 ```
 public Object pop() {
     Object obj;
@@ -589,13 +597,14 @@ public Object pop() {
 }
 ```
 
-Throws Statement
+Throws Statement:
+
 ```
 public void writeList() throws IOException, IndexOutOfBoundsException {
 ```
 
-finally – block at end of try/catch that always executes
-try with resources – resources closed when program is finished with them
+**finally** – block at end of try/catch that always executes
+**try with resources** – resources closed when program is finished with them
 
 
 
@@ -620,22 +629,25 @@ Join allows one thread to wait for the completion of another
 
 
 
-No.	String	StringBuffer
-1.	The String class is immutable.	The StringBuffer class is mutable.
-2.	The String is slow and consumes more memory when you concat too many strings because every time it creates a new instance.	The StringBuffer is fast and consumes less memory when you cancat strings.
-3.	The String class overrides the equals() method of Object class. So you can compare the contents of two strings by equals() method.	The StringBuffer class doesn't override the equals() method of Object class.
+| String  | 	StringBuffer |
+|---|---|
+| The String class is immutable. |	The StringBuffer class is mutable. |
+| The String is slow and consumes more memory when you concat too many strings because every time it creates a new instance. |	The StringBuffer is fast and consumes less memory when you cancat strings. |
+| The String class overrides the equals() method of Object class. | So you can compare the contents of two strings by equals() method. |	The StringBuffer class doesn't override the equals() method of Object class. |
 
 
-No.	StringBuffer	StringBuilder
-1.	StringBuffer is synchronized, i.e., thread safe. It means two threads can't call the methods of StringBuffer simultaneously.	StringBuilder is non-synchronized,i.e., not thread safe. It means two threads can call the methods of StringBuilder simultaneously.
-2.	StringBuffer is less efficient than StringBuilder.	StringBuilder is more efficient than StringBuffer.
+| StringBuffer	StringBuilder
+|---|---|
+| StringBuffer is synchronized, i.e., thread safe. It means two threads can't call the methods of StringBuffer simultaneously. |	StringBuilder is non-synchronized,i.e., not thread safe. It means two threads can call the methods of StringBuilder simultaneously. |
+| StringBuffer is less efficient than StringBuilder. |	StringBuilder is more efficient than StringBuffer. |
 
 
-No.	Serializable	Externalizable
-1.	The Serializable interface does not have any method, i.e., it is a marker interface.	The Externalizable interface contains is not a marker interface, It contains two methods, i.e., writeExternal() and readExternal().
-2.	It is used to "mark" Java classes so that objects of these classes may get the certain capability.	The Externalizable interface provides control of the serialization logic to the programmer.
-3.	It is easy to implement but has the higher performance cost.	It is used to perform the serialization and often result in better performance.
-4.	No class constructor is called in serialization.	We must call a public default constructor while using this interface.
+| Serializable |	Externalizable |
+|---|---|
+| The Serializable interface does not have any method, i.e., it is a marker interface. |	The Externalizable interface contains is not a marker interface, It contains two methods, i.e., writeExternal() and readExternal(). |
+| It is used to "mark" Java classes so that objects of these classes may get the certain capability. |	The Externalizable interface provides control of the serialization logic to the programmer. |
+| It is easy to implement but has the higher performance cost.	| It is used to perform the serialization and often result in better performance. |
+| No class constructor is called in serialization.	| We must call a public default constructor while using this interface. |
 
 
 
