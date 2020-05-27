@@ -9,7 +9,7 @@
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/oop.png)
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/classStructure.png)
 
-Object – instance of a class that has identity, state and behavior, Object is the root class of all classes in Java
+**Object** – instance of a class that has identity, state and behavior, Object is the root class of all classes in Java
 
 1.	Declaration: The code set in bold are all variable declarations that associate a variable name with an object type.
 2.	Instantiation: The new keyword is a Java operator that creates the object.
@@ -17,77 +17,78 @@ Object – instance of a class that has identity, state and behavior, Object is 
       Point originOne = new Point(23, 94);
 
 
-[Memory](https://www.baeldung.com/java-stack-heap)
+### [Memory](https://www.baeldung.com/java-stack-heap)
 
-1.	Stack Memory
+1.	**Stack Memory**
 * Used for static memory allocation and the execution of a thread
 * Contains primitive values specific to method and references to objects in heap
 * When a new method is called, a new block on top of the stack is created which contains values specific to that method
 * Access faster than heap and threadsafe
 * StackOverFlowError – memory is full
 
-2.	Heap Space
+2.	**Heap Space**
 * Used for dynamic memory allocation for Java objects and runtime classes
 * New objects are always created in heap space and references stored in stack
 * OutOfMemoryError – heap space is full
 * Slower, memory isn’t automatically deallocated, not threadsafe
 
-![Image](memoryAllocation)
+![Image](https://github.com/TheHun89/OOP/blob/master/images/memoryAllocation.png)
 
 
 ### Garbage Collection
-Some object-oriented languages require that you keep track of all the objects you create and that you explicitly destroy them when they are no longer needed. Managing memory explicitly is tedious and error-prone. The Java platform allows you to create as many objects as you want (limited, of course, by what your system can handle), and you don't have to worry about destroying them. The Java runtime environment deletes objects when it determines that they are no longer being used. This process is called garbage collection.  An object is eligible for garbage collection when there are no more references to that object. References that are held in a variable are usually dropped when the variable goes out of scope. Or, you can explicitly drop an object reference by setting the variable to the special value null.
+Some object-oriented languages require that you keep track of all the objects you create and that you explicitly destroy them when they are no longer needed. Managing memory explicitly is tedious and error-prone. The Java platform allows you to create as many objects as you want (limited, of course, by what your system can handle), and you don't have to worry about destroying them. The Java runtime environment **deletes objects when it determines that they are no longer being used**. This process is called garbage collection.  An object is eligible for garbage collection when there are no more references to that object. References that are held in a variable are usually dropped when the variable goes out of scope. Or, you can explicitly drop an object reference by setting the variable to the special value null.
 
-
-
-
-
-
-
+![Image](https://github.com/TheHun89/OOP/blob/master/images/unreference.png)
+![Image](https://github.com/TheHun89/OOP/blob/master/images/createObject.png)
+![Image](https://github.com/TheHun89/OOP/blob/master/images/constructorTypes.png)
+![Image](https://github.com/TheHun89/OOP/blob/master/images/super.png)
 
 
 Variable types – primitive(8) vs reference
 
-4 Variables:
-Instance variables are created inside the class but outside the method. Instance variable doesn't get memory at compile time. It gets memory at runtime when an object or instance is created.
-Class (static)
-Local (method)
-Parameter ie: public static void main(String[] args)
+**4 Variables:**
+1. Instance variables are created inside the class but outside the method. Instance variable doesn't get memory at compile time. It gets memory at runtime when an object or instance is created.
+2. Class (static)
+3. Local (method)
+4. Parameter ie: public static void main(String[] args)
 
-literal is the source code representation of a fixed value
-Data Type      Possible Literal
-•	int                   33 (0)
-•	byte                 6 (0)
-•	short               94 (0)
-•	long                53092437L (0L)
-•	char                'c'
-•	boolean          true or (false)
-•	float                1.053f (0.0f)
-•	double            3.03532453
+**literal** is the source code representation of a fixed value
 
-Operator
-	Assignment (=)
-	Arithmetic (+, -, /n*, /, %)
-	Unary (+, -, ++, --, !)
-	Equality/Relational (!=, ==, >, <. >=. <=)
-Conditional (&&, ||)
-Type Comparison (instanceof)
-Bitwise, Bit Shift
+| Data Type  | Possible Literal  |
+|---|---|    
+|  int       |          33 (0)  |
+|  byte      |           6 (0)  |
+|  short     |          94 (0)  |
+|  long      |  53092437L (0L)  |
+|  char      |             'c'  |
+|  boolean   | true or (false)  |
+|  float     |   1.053f (0.0f)  |
+|  double    |      3.03532453  |
 
+### Operator
+* Assignment (=)
+* Arithmetic (+, -, /n*, /, %)
+* Unary (+, -, ++, --, !)
+* Equality/Relational (!=, ==, >, <. >=. <=)
+* Conditional (&&, ||)
+* Type Comparison (instanceof)
+* Bitwise, Bit Shift
 
-Expression (ie:  1*2)
-Statement (ie: int sum = 1*2)
-Block – zero or more statements surrounded by {}
+![Image](https://github.com/TheHun89/OOP/blob/master/images/codeBlock.png)
 
-Branching Statements
-Break – exit loop
-Continue - continue
-Return – exit method
+* Expression (ie:  1*2)
+* Statement (ie: int sum = 1*2)
+* Block – zero or more statements surrounded by {}
 
-You can use a construct called varargs to pass an arbitrary number of values to a method. You use varargs when you don't know how many of a particular type of argument will be passed to the method. It's a shortcut to creating an array manually (the previous method could have used varargs rather than an array).
+### Branching Statements
+* Break – exit loop
+* Continue - continue
+* Return – exit method
+
+* You can use a construct called varargs to pass an arbitrary number of values to a method. You use varargs when you don't know how many of a particular type of argument will be passed to the method. It's a shortcut to creating an array manually (the previous method could have used varargs rather than an array).
 public Polygon polygonFrom(Point... corners) {}
 
-Instance Initializer block is used to initialize the instance data member. It run each time when object of the class is created.  Invoked at the time of object creation.  The runtime system guarantees that static initialization blocks are called in the order that they appear in the source code.
+**Instance Initializer block** is used to initialize the instance data member. It run each time when object of the class is created.  Invoked at the time of object creation.  The runtime system guarantees that static initialization blocks are called in the order that they appear in the source code.
 
 ```
 class Bike7{  
