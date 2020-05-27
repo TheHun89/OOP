@@ -143,7 +143,8 @@ class Bike10{
 ```
 
 
-### Abstraction – hiding implementation and showing functionality.  Abstraction enables you to focus on what the object does instead of how it does it.  Two ways – interface and abstract class.
+### Abstraction
+* Abstraction is hiding implementation and showing functionality.  Abstraction enables you to focus on what the object does instead of how it does it.  **Two ways – interface and abstract class.**
 
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/abstractClass.png)
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/abstractVsInterface.png)
@@ -217,13 +218,14 @@ obj.show();
 
 
 
-### Polymorphism – one task performed in different ways (method overriding and overloading), runtime and compiletime; Polymorphism is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.
+### Polymorphism
+* Polymorphism is one task performed in different ways (method overriding and overloading), runtime and compiletime; Polymorphism is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.
 
 
-Method overloading – change number of arguments OR change data types
-Method overriding – subclass with same method as parent class (can’t override static method)
+* **Method overloading** – change number of arguments OR change data types
+* **Method overriding** – subclass with same method as parent class (can’t override static method)
 
-Covariant return type – method overriding where return type is different.  Below example A’s get returns A while B’s get returns B
+* **Covariant return type** – method overriding where return type is different.  Below example A’s get returns A while B’s get returns B
 ```
 class A{  
 A get(){return this;}  
@@ -238,7 +240,7 @@ new B1().get().message();
 }  
 }  
 ```
-Runtime polymorphism or Dynamic Method Dispatch is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+* **Runtime polymorphism** or **Dynamic Method Dispatch** is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
 
 In this process, an overridden method is called through the reference variable of a superclass. The determination of the method to be called is based on the object being referred to by the reference variable.
 
@@ -283,12 +285,13 @@ a.eat();
 // prints dog is eating bc BabyDog is not overriding the eat() method, so eat() method of Dog class is invoked
 ```
 
-### compile-time polymorphism	Runtime polymorphism
-1.	In compile-time polymorphism, call to a method is resolved at compile-time.	In runtime polymorphism, call to an overridden method is resolved at runtime.
-2.	It is also known as static binding, early binding, or overloading.	It is also known as dynamic binding, late binding, overriding, or dynamic method dispatch.
-3.	Overloading is a way to achieve compile-time polymorphism in which, we can define multiple methods or constructors with different signatures.	Overriding is a way to achieve runtime polymorphism in which, we can redefine some particular method or variable in the derived class. By using overriding, we can give some specific implementation to the base class properties in the derived class.
-4.	It provides fast execution because the type of an object is determined at compile-time.	It provides slower execution as compare to compile-time because the type of an object is determined at run-time.
-5.	Compile-time polymorphism provides less flexibility because all the things are resolved at compile-time.	Run-time polymorphism provides more flexibility because all the things are resolved at runtime.
+| compile-time polymorphism	| Runtime polymorphism |
+
+| In compile-time polymorphism, call to a method is resolved at compile-time.	| In runtime polymorphism, call to an overridden method is resolved at runtime. |
+| It is also known as static binding, early binding, or overloading.	| It is also known as dynamic binding, late binding, overriding, or dynamic method dispatch. |
+| Overloading is a way to achieve compile-time polymorphism in which, we can define multiple methods or constructors with different signatures.	| Overriding is a way to achieve runtime polymorphism in which, we can redefine some particular method or variable in the derived class. By using overriding, we can give some specific implementation to the base class properties in the derived class. |
+| It provides fast execution because the type of an object is determined at compile-time.	| It provides slower execution as compare to compile-time because the type of an object is determined at run-time. |
+| Compile-time polymorphism provides less flexibility because all the things are resolved at compile-time.	| Run-time polymorphism provides more flexibility because all the things are resolved at runtime. |
 
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/staticDynamicBinding.png)
 
