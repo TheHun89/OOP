@@ -85,7 +85,7 @@ Variable types – primitive(8) vs reference
 * Continue - continue
 * Return – exit method
 
-* You can use a construct called varargs to pass an arbitrary number of values to a method. You use varargs when you don't know how many of a particular type of argument will be passed to the method. It's a shortcut to creating an array manually (the previous method could have used varargs rather than an array).
+You can use a construct called varargs to pass an arbitrary number of values to a method. You use varargs when you don't know how many of a particular type of argument will be passed to the method. It's a shortcut to creating an array manually (the previous method could have used varargs rather than an array).
 public Polygon polygonFrom(Point... corners) {}
 
 **Instance Initializer block** is used to initialize the instance data member. It run each time when object of the class is created.  Invoked at the time of object creation.  The runtime system guarantees that static initialization blocks are called in the order that they appear in the source code.
@@ -105,28 +105,31 @@ class Bike7{
 }  
 ```
 
-this is a reference variable that refers to the current object
+**this** is a reference variable that refers to the current object
+
+![Image](https://github.com/TheHun89/OOP/blob/master/images/this.png)
 
 
+**Java does NOT support multiple inheritance** (ie: class C extends A, B where A and B have the same method – compile time error.  Use multiple interfaces instead)
 
-Java does NOT support multiple inheritance (ie: class C extends A, B where A and B have the same method – compile time error.  Use multiple interfaces instead)
-
-
-
-Encapsulation – binding code/data into single unit accessible through getters/setters, modifiers
-
-Packages – built in and user defined; help avoid conflicts with same class names defined in different packages
-Modifiers- access and non
-There are many non-access modifiers, such as static, abstract, synchronized, native, volatile, transient, etc. Here, we are going to learn the access modifiers only.
+![Image](https://github.com/TheHun89/OOP/blob/master/images/multipleInheritance.png)
 
 
+### Encapsulation – binding code/data into single unit accessible through getters/setters, modifiers
 
-Other modifiers:
-•	Static - Static fields or methods are class members, whereas non-static ones are object members. Class members don't need any instance to be invoked;  You can not have a TOP level static class; you can have static nested classes
-•	Final – (variable can NOT be changed, class can NOT be extended and method can NOT be overridden), blank final variable can only be initialized in constructor
-•	Abstract – can't be instantiated. Instead, they are meant to be subclassed
-•	Synchronized – can use it with the instance as well as with static methods and code blocks. When we use this keyword, we make Java use a monitor lock to provide synchronization on a given code fragment.
-•	Volatile - can only use it together with instance fields. It declares that the field value must be read from and written to main memory – bypassing the CPU cache. All reads and writes for a volatile variable are atomic.
+* Packages – built in and user defined; help avoid conflicts with same class names defined in different packages
+* Modifiers- access and non
+* There are many non-access modifiers, such as static, abstract, synchronized, native, volatile, transient, etc. Here, we are going to learn the access modifiers only.
+
+![Image](https://github.com/TheHun89/OOP/blob/master/images/accessModifiers.png)
+
+
+#### Other modifiers:
+*	Static - Static fields or methods are class members, whereas non-static ones are object members. Class members don't need any instance to be invoked;  You can not have a TOP level static class; you can have static nested classes
+*	Final – (variable can NOT be changed, class can NOT be extended and method can NOT be overridden), blank final variable can only be initialized in constructor
+*	Abstract – can't be instantiated. Instead, they are meant to be subclassed
+*	Synchronized – can use it with the instance as well as with static methods and code blocks. When we use this keyword, we make Java use a monitor lock to provide synchronization on a given code fragment.
+*	Volatile - can only use it together with instance fields. It declares that the field value must be read from and written to main memory – bypassing the CPU cache. All reads and writes for a volatile variable are atomic.
 
 ```
 class Bike10{  
@@ -140,13 +143,15 @@ class Bike10{
 ```
 
 
-Abstraction – hiding implementation and showing functionality.  Abstraction enables you to focus on what the object does instead of how it does it.  Two ways – interface and abstract class.
+### Abstraction – hiding implementation and showing functionality.  Abstraction enables you to focus on what the object does instead of how it does it.  Two ways – interface and abstract class.
+
+![Image](https://github.com/TheHun89/OOP/blob/master/images/abstractClass.png)
+![Image](https://github.com/TheHun89/OOP/blob/master/images/abstractVsInterface.png)
 
 
 
 
-
-Abstract class vs Interface
+#### Abstract class vs Interface
 1.	Type of methods: Interface can have only abstract methods. Abstract class can have abstract and non-abstract methods. From Java 8, it can have default and static methods also.
 2.	Final Variables: Variables declared in a Java interface are by default final. An abstract class may contain non-final variables.
 3.	Type of variables: Abstract class can have final, non-final, static and non-static variables. Interface has only static and final variables.
@@ -156,6 +161,8 @@ Abstract class vs Interface
 7.	Accessibility of Data Members: Members of a Java interface are public by default. A Java abstract class can have class members like private, protected, etc.
 
 Reasons to choose Interface
+
+![Image](https://github.com/TheHun89/OOP/blob/master/images/choosingInterfaces.png)
 
 
 ```
@@ -210,7 +217,7 @@ obj.show();
 
 
 
-Polymorphism – one task performed in different ways (method overriding and overloading), runtime and compiletime; Polymorphism is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.
+### Polymorphism – one task performed in different ways (method overriding and overloading), runtime and compiletime; Polymorphism is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.
 
 
 Method overloading – change number of arguments OR change data types
@@ -232,10 +239,12 @@ new B1().get().message();
 }  
 ```
 Runtime polymorphism or Dynamic Method Dispatch is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+
 In this process, an overridden method is called through the reference variable of a superclass. The determination of the method to be called is based on the object being referred to by the reference variable.
+
 A method is overridden, not the data members, so runtime polymorphism can't be achieved by data members.
 
-Upcasting and Downcasting
+### Upcasting and Downcasting
 https://stackoverflow.com/questions/23414090/what-is-the-difference-between-up-casting-and-down-casting-with-respect-to-class
 Upcasting is casting to a supertype, while downcasting is casting to a subtype. Upcasting is always allowed, but downcasting involves a type check and can throw a ClassCastException.  Upcasting is done automatically but downcasting needs to be done manually by programmer.
 A cast from a Dog to an Animal is an upcast, because a Dog is-a Animal. In general, you can upcast whenever there is an is-a relationship between two classes.
@@ -281,6 +290,7 @@ a.eat();
 4.	It provides fast execution because the type of an object is determined at compile-time.	It provides slower execution as compare to compile-time because the type of an object is determined at run-time.
 5.	Compile-time polymorphism provides less flexibility because all the things are resolved at compile-time.	Run-time polymorphism provides more flexibility because all the things are resolved at runtime.
 
+![Image](https://github.com/TheHun89/OOP/blob/master/images/staticDynamicBinding.png)
 
 
 If there is any private, final or static method in a class, there is static binding.
@@ -309,7 +319,7 @@ class Dog extends Animal{
  }  
 }
 ```
-The java instanceof operator is used to test whether the object is an instance of the specified type (class or subclass or interface).
+The java **instanceof** operator is used to test whether the object is an instance of the specified type (class or subclass or interface).
 ```
 class Simple1{  
  public static void main(String args[]){  
@@ -351,15 +361,17 @@ c.invoke(p);  // outputs ‘b method’
 
 
 
-Inheritance – when one object acquires all of the properties and behaviors of its parent object
+### Inheritance – when one object acquires all of the properties and behaviors of its parent object
 
 
-Coupling - Coupling refers to the knowledge or information or dependency of another class. It arises when classes are aware of each other. If a class has the details information of another class, there is strong coupling. In Java, we use private, protected, and public modifiers to display the visibility level of a class, method, and field. You can use interfaces for the weaker coupling because there is no concrete implementation.
+* Coupling - Coupling refers to the knowledge or information or dependency of another class. It arises when classes are aware of each other. If a class has the details information of another class, there is strong coupling. In Java, we use private, protected, and public modifiers to display the visibility level of a class, method, and field. You can use interfaces for the weaker coupling because there is no concrete implementation.
+
+![Image](https://github.com/TheHun89/OOP/blob/master/images/coupling.png)
 
 
+* Cohesion - Cohesion refers to the level of a component which performs a single well-defined task. A single well-defined task is done by a highly cohesive method. The weakly cohesive method will split the task into separate parts. The java.io package is a highly cohesive package because it has I/O related classes and interface. However, the java.util package is a weakly cohesive package because it has unrelated classes and interfaces.
 
-Cohesion - Cohesion refers to the level of a component which performs a single well-defined task. A single well-defined task is done by a highly cohesive method. The weakly cohesive method will split the task into separate parts. The java.io package is a highly cohesive package because it has I/O related classes and interface. However, the java.util package is a weakly cohesive package because it has unrelated classes and interfaces.
-
+![Image](https://github.com/TheHun89/OOP/blob/master/images/classUml.png)
 
 ```
 public class A {
@@ -380,24 +392,25 @@ public class A {
 }
 ```
 
+![Image](https://github.com/TheHun89/OOP/blob/master/images/associationTypes.png)
 
 
-Association - Association represents the relationship between the objects. Here, one object can be associated with one object or many objects. There can be four types of association between the objects:
-* One to One
-*	One to Many
-*	Many to One
-*	Many to Many
+* Association - Association represents the relationship between the objects. Here, one object can be associated with one object or many objects. There can be four types of association between the objects:
+1. One to One
+2. One to Many
+3. Many to One
+4. Many to Many
 
 Let's understand the relationship with real-time examples. For example, One country can have one prime minister (one to one), and a prime minister can have many ministers (one to many). Also, many MP's can have one prime minister (many to one), and many ministers can have many departments (many to many).
 Association can be undirectional or bidirectional.
 
-Aggregation - Aggregation is a way to achieve Association. Aggregation represents the relationship where one object contains other objects as a part of its state. It represents the weak relationship between objects. It is also termed as a has-a relationship in Java. Like, inheritance represents the is-a relationship. It is another way to reuse objects.
+* Aggregation - Aggregation is a way to achieve Association. Aggregation represents the relationship where one object contains other objects as a part of its state. It represents the weak relationship between objects. It is also termed as a has-a relationship in Java. Like, inheritance represents the is-a relationship. It is another way to reuse objects.
 
-Composition - The composition is also a way to achieve Association. The composition represents the relationship where one object contains other objects as a part of its state. There is a strong relationship between the containing object and the dependent object. It is the state where containing objects do not have an independent existence. If you delete the parent object, all the child objects will be deleted automatically.
+* Composition - The composition is also a way to achieve Association. The composition represents the relationship where one object contains other objects as a part of its state. There is a strong relationship between the containing object and the dependent object. It is the state where containing objects do not have an independent existence. If you delete the parent object, all the child objects will be deleted automatically.
 
 Dependency (local scope) vs Association (class scope)
-Association --> A has-a C object (as a member variable)
-Dependency --> A references B (as a method parameter or return type)
+Association --> A **has-a** C object (as a member variable)
+Dependency --> A **references** B (as a method parameter or return type)
 ```
 public class A {
     private C c;
@@ -408,7 +421,8 @@ public class A {
 ```
 An association is a strong (static) dependency. Aggregation and Composition are even stronger.  Both types of association.
 
-Composition – you create an object of a class inside another class
+* Composition – you create an object of a class inside another class
+
 ```
 public class A {
        B b;
@@ -418,7 +432,7 @@ public class A {
      }
 ```
 
-Aggregation – weaker type of association between 2 objects
+* Aggregation – weaker type of association between 2 objects
 ```
 public class A {       
              B b;
@@ -429,41 +443,43 @@ public class A {
    }
 ```
 
-Autoboxing is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. For example, converting an int to an Integer, a double to a Double, and so on. If the conversion goes the other way, this is called unboxing.
+**Autoboxing** is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. For example, converting an int to an Integer, a double to a Double, and so on. If the conversion goes the other way, this is called unboxing.
+
+#### (Auto)boxing (value to obj) vs Unboxing
 ```
-(Auto)boxing (value to obj) vs Unboxing
 Integer number = 100;   // autoboxing
 int inum = number;      // unboxing
 ```
 
-Primitive type	Wrapper class
-boolean	Boolean
-byte	Byte
-char	Character
-float	Float
-int	Integer
-long	Long
-short	Short
-double	Double
+| Primitive type |	Wrapper class |
+|---|---|  
+| boolean	| Boolean |
+| byte	| Byte |
+| char	| Character |
+| float	| Float |
+| int	| Integer |
+| long	| Long |
+| short	| Short |
+| double |	Double |
 
 
-Casting:  Implicit (widen) vs Explicit (narrow) Conversion
+#### Casting:  Implicit (widen) vs Explicit (narrow) Conversion
 Type Casting in Java is nothing but converting a primitive, interface or class into another type.
 
 
-Implicit – safe, no risk of losing data
+* Implicit – safe, no risk of losing data
+
+![Image](https://github.com/TheHun89/OOP/blob/master/images/widen.png)
+
+* Explicit – it is likely conversion could lose data
+
+![Image](https://github.com/TheHun89/OOP/blob/master/images/narrow.png)
+
+[Implicit vs Explicit Casting](https://javainterviewpoint.com/type-casting-java-implicit-explicit-casting/)
 
 
 
-Explicit – it is likely conversion could lose data
-
-
-
-https://javainterviewpoint.com/type-casting-java-implicit-explicit-casting/
-
-
-
-An enum type is a special data type that enables for a variable to be a set of predefined constants. The variable must be equal to one of the values that have been predefined for it. Common examples include compass directions (values of NORTH, SOUTH, EAST, and WEST) and the days of the week.
+An **enum** type is a special data type that enables for a variable to be a set of predefined constants. The variable must be equal to one of the values that have been predefined for it. Common examples include compass directions (values of NORTH, SOUTH, EAST, and WEST) and the days of the week.
 * Enums are thread safe and popularly used in Singletons.
 
 
