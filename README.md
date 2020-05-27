@@ -286,7 +286,7 @@ a.eat();
 ```
 
 | compile-time polymorphism	| Runtime polymorphism |
-|---|---| 
+|---|---|
 | In compile-time polymorphism, call to a method is resolved at compile-time.	| In runtime polymorphism, call to an overridden method is resolved at runtime. |
 | It is also known as static binding, early binding, or overloading.	| It is also known as dynamic binding, late binding, overriding, or dynamic method dispatch. |
 | Overloading is a way to achieve compile-time polymorphism in which, we can define multiple methods or constructors with different signatures.	| Overriding is a way to achieve runtime polymorphism in which, we can redefine some particular method or variable in the derived class. By using overriding, we can give some specific implementation to the base class properties in the derived class. |
@@ -554,6 +554,7 @@ System.out.println("ShadowTest.this.x = " + ShadowTest.this.x);
 
 
 **Compile-time**: the time period in which you, the developer, are compiling your code.
+
 **Run-time**: the time period which a user is running your piece of software.
 
 An **exception** is an event that occurs during the execution of a program that disrupts the normal flow of instructions.  When an error occurs within a method, the method creates an object and hands it off to the runtime system. The object, called an exception object, contains information about the error, including its type and the state of the program when the error occurred.  After a method throws an exception, the runtime system attempts to find something to handle it. The set of possible "somethings" to handle the exception is the ordered list of methods that had been called to get to the method where the error occurred. The list of methods is known as the call stack.  The runtime system searches the call stack for a method that contains a block of code that can handle the exception. This block of code is called an exception handler. The search begins with the method in which the error occurred and proceeds through the call stack in the reverse order in which the methods were called. When an appropriate handler is found, the runtime system passes the exception to the handler. An exception handler is considered appropriate if the type of the exception object thrown matches the type that can be handled by the handler.
@@ -578,9 +579,9 @@ Three Types: (Runtime and Error are both considered Unchecked; Runtime exception
 | throw keyword | throws keyword |
 |---|---|
 | The throw keyword is used to throw an exception explicitly.	| The throws keyword is used to declare an exception. |
-| The checked exceptions cannot be propagated with throw only.	The checked exception can be propagated with throws |
-| The throw keyword is followed by an instance.	The throws keyword is followed by class. |
-| The throw keyword is used within the method.	The throws keyword is used with the method signature. |
+| The checked exceptions cannot be propagated with throw only. |	The checked exception can be propagated with throws |
+| The throw keyword is followed by an instance.	| The throws keyword is followed by class. |
+| The throw keyword is used within the method.	| The throws keyword is used with the method signature. |
 | You cannot throw multiple exceptions.	| You can declare multiple exceptions, e.g., public void method()throws IOException, SQLException. |
 
 Throw Statement:
