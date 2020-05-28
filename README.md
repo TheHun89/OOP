@@ -14,8 +14,9 @@
 1.	Declaration: The code set in bold are all variable declarations that associate a variable name with an object type.
 2.	Instantiation: The new keyword is a Java operator that creates the object.
 3.	Initialization: The new operator is followed by a call to a constructor, which initializes the new object.
+```
       Point originOne = new Point(23, 94);
-
+```
 
 ### [Memory](https://www.baeldung.com/java-stack-heap)
 
@@ -67,7 +68,7 @@ Variable types – primitive(8) vs reference
 
 ### Operator
 * Assignment (=)
-* Arithmetic (+, -, /n*, /, %)
+* Arithmetic (+, -, \*, /, %)
 * Unary (+, -, ++, --, !)
 * Equality/Relational (!=, ==, >, <. >=. <=)
 * Conditional (&&, ||)
@@ -86,7 +87,9 @@ Variable types – primitive(8) vs reference
 * Return – exit method
 
 You can use a construct called varargs to pass an arbitrary number of values to a method. You use varargs when you don't know how many of a particular type of argument will be passed to the method. It's a shortcut to creating an array manually (the previous method could have used varargs rather than an array).
+```
 public Polygon polygonFrom(Point... corners) {}
+```
 
 **Instance Initializer block** is used to initialize the instance data member. It run each time when object of the class is created.  Invoked at the time of object creation.  The runtime system guarantees that static initialization blocks are called in the order that they appear in the source code.
 
@@ -657,5 +660,5 @@ Join allows one thread to wait for the completion of another
 
 
 References:
-https://docs.oracle.com/javase/tutorial/java/TOC.html
-https://docs.oracle.com/javase/tutorial/essential/TOC.html
+[Link1](https://docs.oracle.com/javase/tutorial/java/TOC.html)
+[Link2](https://docs.oracle.com/javase/tutorial/essential/TOC.html)
