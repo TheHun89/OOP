@@ -615,17 +615,180 @@ public void writeList() throws IOException, IndexOutOfBoundsException {
 
 
 
-Concurrency
-Process – program in execution
-Thread - Threads exist within a process — every process has at least one.  Each thread is associated with an instance of the class.  An application that creates an instance of Thread must provide the code that will run in that thread. There are two ways to do this:  implement Runnable or extend Thread
-Implementing Runnable is more flexible, but it is applicable to the high-level thread management APIs
+### Concurrency
+* Java package - java.util.concurrent
+* Process – program in execution
+* Thread - Threads exist within a process — every process has at least one.  In a Java application you start with one thread - 'main' thread
 
-Start starts
-Sleep pauses
-Interrupt is an indication to a thread that it should stop what it is doing and do something else. It's up to the programmer to decide exactly how a thread responds to an interrupt, but it is very common for the thread to terminate.
-Join allows one thread to wait for the completion of another
+* Each thread is associated with an instance of the class **Thread**
 
+An application that creates an instance of Thread must provide the code that will run in that thread. There are two ways to do this:  
+* Implement Runnable or extend Thread
+```
+public class HelloRunnable implements Runnable {
 
+    public void run() {
+        System.out.println("Hello from a thread!");
+    }
+
+    public static void main(String args[]) {
+        (new Thread(new HelloRunnable())).start();
+    }
+
+}
+
+public class HelloThread extends Thread {
+
+    public void run() {
+        System.out.println("Hello from a thread!");
+    }
+
+    public static void main(String args[]) {
+        (new HelloThread()).start();
+    }
+
+}
+
+public class SleepMessages {
+    public static void main(String args[])
+        throws InterruptedException {
+        String importantInfo[] = {
+            "Mares eat oats",
+            "Does eat oats",
+            "Little lambs eat ivy",
+            "A kid will eat ivy too"
+        };
+
+        for (int i = 0;
+             i < importantInfo.length;
+             i++) {
+            //Pause for 4 seconds
+            Thread.sleep(4000);
+            //Print a message
+            System.out.println(importantInfo[i]);
+        }
+    }
+}
+```
+
+* Implementing Runnable is more flexible, but it is applicable to the high-level thread management APIs
+
+* Start - starts
+
+* Sleep - pauses  
+* InterruptedException - exception sleep throws when another thread interrupts the current thread while sleep is active
+
+* Interrupt - indication to a thread that it should stop what it is doing and do something else; up to programmer to decide exactly how a thread responds, but very common for thread to terminate; a thread sends an interrupt by invoking interrupt on the Thread object for the thread to be interrupted
+```
+for (int i = 0; i < importantInfo.length; i++) {
+    // Pause for 4 seconds
+    try {
+        Thread.sleep(4000);
+    } catch (InterruptedException e) {
+        // We've been interrupted: no more messages.
+        return;
+    }
+    // Print a message
+    System.out.println(importantInfo[i]);
+}
+```
+
+* if a thread goes a long time without invoking a method that throws InterruptedException then it must periodically invoke Thread.interrupted, which returns true if an interrupt has been received
+```
+for (int i = 0; i < inputs.length; i++) {
+    heavyCrunch(inputs[i]);
+    if (Thread.interrupted()) {
+        // We've been interrupted: no more crunching.
+        return;
+    }
+}
+```
+
+* Interrupt Status Flag - The interrupt mechanism is implemented using an internal flag known as the interrupt status. Invoking Thread.interrupt sets this flag. When a thread checks for an interrupt by invoking the static method Thread.interrupted, interrupt status is cleared. The non-static isInterrupted method, which is used by one thread to query the interrupt status of another, does not change the interrupt status flag.  By convention, any method that exits by throwing an InterruptedException clears interrupt status when it does so. However, it's always possible that interrupt status will immediately be set again, by another thread invoking interrupt.
+
+* Join - join method allows one thread to wait for the completion of another; If t is a Thread object whose thread is currently executing, t.join causes the current thread to pause execution until t's thread terminates.  Like sleep, join responds to an interrupt by exiting with an InterruptedException.
+```
+t.join();
+```
+
+#### Synchronization
+* Threads communicate primarily by sharing access to fields and the objects reference fields refer to.
+* This however makes two kinds of errors possible: **thread interference** and **memory consistency errors**
+* Synchronization prevents these but can introduce **thread contention**
+* **Thread contention** is when two or more threads try to access the same resource simultaneously and cause the Java runtime to execute one or more threads more slowly or even suspend their execution
+* **Starvation** and **livelock** are forms of thread contention
+
+#### Thread Interference
+* describes how errors are introduced when multiple threads access shared data
+```
+class Counter {
+    private int c = 0;
+
+    public void increment() {
+        c++;
+    }
+
+    public void decrement() {
+        c--;
+    }
+
+    public int value() {
+        return c;
+    }
+
+}
+```
+1. Thread A: Retrieve c.
+2. Thread B: Retrieve c.
+3. Thread A: Increment retrieved value; result is 1.
+4. Thread B: Decrement retrieved value; result is -1.
+5. Thread A: Store result in c; c is now 1.
+6. Thread B: Store result in c; c is now -1.
+
+* Thread A's result is lost, overwritten by Thread B.
+
+#### Memory Consistency Errors
+* errors that result from inconsistent views of shared memory
+* due to the complexity of these types of errors, the programmer does not need a detailed understanding of these causes. All that is needed is a strategy for avoiding them.
+* key to avoiding memory consistency errors is understanding the **happens-before relationship**. This relationship is simply a guarantee that memory writes by one specific statement are visible to another specific statement.
+* there are several actions that create happens-before relationships. One of them is synchronization
+
+* we've already seen two actions that create happens-before relationships:
+* when a statement invokes Thread.start, every statement that has a happens-before relationship with that statement also has a happens-before relationship with every statement executed by the new thread. The effects of the code that led up to the creation of the new thread are visible to the new thread.
+* when a thread terminates and causes a Thread.join in another thread to return, then all the statements executed by the terminated thread have a happens-before relationship with all the statements following the successful join. The effects of the code in the thread are now visible to the thread that performed the join.
+
+#### Synchronized Methods
+* describes a simple idiom that can effectively prevent thread interference and memory consistency errors; if an object is visible to more than one thread, all reads or writes to that object's variables are done through synchronized methods; This strategy is effective, but can present problems with liveness
+```
+public class SynchronizedCounter {
+    private int c = 0;
+
+    public synchronized void increment() {
+        c++;
+    }
+
+    public synchronized void decrement() {
+        c--;
+    }
+
+    public synchronized int value() {
+        return c;
+    }
+}
+```
+
+If count is an instance of SynchronizedCounter, then making these methods synchronized has two effects:
+
+* First, it is not possible for two invocations of synchronized methods on the same object to interleave. When one thread is executing a synchronized method for an object, all other threads that invoke synchronized methods for the same object block (suspend execution) until the first thread is done with the object.
+* Second, when a synchronized method exits, it automatically establishes a happens-before relationship with any subsequent invocation of a synchronized method for the same object. This guarantees that changes to the state of the object are visible to all threads.
+
+* constructors can NOT be synchronized
+
+#### Implicit Locks and Synchronization
+* describes a more general synchronization idiom and how synchronization is based on implicit locks
+
+#### Atomic Access
+* talks about general idea of operations that can't be interfered with by other threads
 
 
 
