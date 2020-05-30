@@ -617,10 +617,14 @@ public void writeList() throws IOException, IndexOutOfBoundsException {
 
 ### Concurrency
 * Java package - java.util.concurrent
-* Process – program in execution
-* Thread - Threads exist within a process — every process has at least one.  In a Java application you start with one thread - 'main' thread
+* **Process** – program in execution
+* **Thread** - Threads exist within a process — every process has at least one; Threads share the process's resources, including memory and open files;  In a Java application you start with one thread - 'main' thread
 
 * Each thread is associated with an instance of the class **Thread**
+
+Two basic strategies for using Thread objects to create a concurrent app:
+1. To directly control thread creation and management, simply instantiate Thread each time the application needs to initiate an asynchronous task.
+2. To abstract thread management from the rest of your application, pass the application's tasks to an executor.
 
 An application that creates an instance of Thread must provide the code that will run in that thread. There are two ways to do this:  
 * Implement Runnable or extend Thread
@@ -671,14 +675,13 @@ public class SleepMessages {
 }
 ```
 
-* Implementing Runnable is more flexible, but it is applicable to the high-level thread management APIs
-
 * Start - starts
-
 * Sleep - pauses  
 * InterruptedException - exception sleep throws when another thread interrupts the current thread while sleep is active
 
-* Interrupt - indication to a thread that it should stop what it is doing and do something else; up to programmer to decide exactly how a thread responds, but very common for thread to terminate; a thread sends an interrupt by invoking interrupt on the Thread object for the thread to be interrupted
+* Interrupt - indication to a thread that it should stop what it is doing and do something else; up to programmer to decide exactly how a thread responds, but very common for thread to terminate
+
+A thread sends an interrupt by invoking interrupt on the Thread object for the thread to be interrupted:
 ```
 for (int i = 0; i < importantInfo.length; i++) {
     // Pause for 4 seconds
@@ -693,7 +696,7 @@ for (int i = 0; i < importantInfo.length; i++) {
 }
 ```
 
-* if a thread goes a long time without invoking a method that throws InterruptedException then it must periodically invoke Thread.interrupted, which returns true if an interrupt has been received
+If a thread goes a long time without invoking a method that throws InterruptedException then it must periodically invoke Thread.interrupted, which returns true if an interrupt has been received:
 ```
 for (int i = 0; i < inputs.length; i++) {
     heavyCrunch(inputs[i]);
@@ -753,7 +756,7 @@ class Counter {
 * key to avoiding memory consistency errors is understanding the **happens-before relationship**. This relationship is simply a guarantee that memory writes by one specific statement are visible to another specific statement.
 * there are several actions that create happens-before relationships. One of them is synchronization
 
-* we've already seen two actions that create happens-before relationships:
+we've already seen two actions that create happens-before relationships:
 * when a statement invokes Thread.start, every statement that has a happens-before relationship with that statement also has a happens-before relationship with every statement executed by the new thread. The effects of the code that led up to the creation of the new thread are visible to the new thread.
 * when a thread terminates and causes a Thread.join in another thread to return, then all the statements executed by the terminated thread have a happens-before relationship with all the statements following the successful join. The effects of the code in the thread are now visible to the thread that performed the join.
 
@@ -778,22 +781,108 @@ public class SynchronizedCounter {
 ```
 
 If count is an instance of SynchronizedCounter, then making these methods synchronized has two effects:
-
-* First, it is not possible for two invocations of synchronized methods on the same object to interleave. When one thread is executing a synchronized method for an object, all other threads that invoke synchronized methods for the same object block (suspend execution) until the first thread is done with the object.
-* Second, when a synchronized method exits, it automatically establishes a happens-before relationship with any subsequent invocation of a synchronized method for the same object. This guarantees that changes to the state of the object are visible to all threads.
+1. It is not possible for two invocations of synchronized methods on the same object to interleave. When one thread is executing a synchronized method for an object, all other threads that invoke synchronized methods for the same object block (suspend execution) until the first thread is done with the object.
+2. When a synchronized method exits, it automatically establishes a happens-before relationship with any subsequent invocation of a synchronized method for the same object. This guarantees that changes to the state of the object are visible to all threads.
 
 * constructors can NOT be synchronized
 
-#### Implicit Locks and Synchronization
-* describes a more general synchronization idiom and how synchronization is based on implicit locks
+#### Intrinsic Locks and Synchronization
+* synchronization is built around an internal entity known as the intrinsic/monitor lock
+* intrinsic locks play a role in both aspects of synchronization: enforcing exclusive access to an object's state and establishing happens-before relationships that are essential to visibility
+* every object has an intrinsic lock associated with it
+* a thread that needs exclusive and consistent access to an object's fields has to acquire the object's intrinsic lock before accessing them and then release the intrinsic lock when it's done
+* in the case of a static synchronized method a thread acquires the intrinsic lock for the Class object associated with the class, thus access to class's static fields is controlled by a lock that's distinct from the lock for any instance of the class
+
+Synchronized Statements
+* unlike synchronized methods, synchronized statements must specify the object that provides the intrinsic lock:
+```public void addName(String name) {
+    synchronized(this) {
+        lastName = name;
+        nameCount++;
+    }
+    nameList.add(name);
+}
+```
+
+* Reentrant Synchronization - allowing a thread to acquire the same lock more than once (that it already owns)
 
 #### Atomic Access
-* talks about general idea of operations that can't be interfered with by other threads
+* general idea operations can't be interfered with by other threads; action either happens completely or not at all
 
+Actions you can specify that are atomic:
+1. Reads and writes are atomic for reference variables and for most primitive variables (all types except long and double).
+2. Reads and writes are atomic for all variables declared volatile (including long and double variables).
 
+* Atomic actions cannot be interleaved, so they can be used without fear of thread interference. However, this does not eliminate all need to synchronize atomic actions, because memory consistency errors are still possible
+* **Volatile variables** reduces the risk of memory consistency errors, because any write to a volatile variable establishes a happens-before relationship with subsequent reads of that same variable. This means that changes to a volatile variable are always visible to other threads
 
+#### Liveness
+* a concurrent application's ability to execute in a timely manner
+* **Deadlock** - most common kind of liveness problem; two or more threads are blocked forever, waiting for each other
+* **Starvation** - thread is unable to gain regular access to shared resources and is unable to make progress; this happens when shared resources are made unavailable for long periods by "greedy" threads
+* **Livelock** - A thread often acts in response to the action of another thread. If the other thread's action is also a response to the action of another thread, then livelock may result. As with deadlock, livelocked threads are unable to make further progress. However, the threads are not blocked — they are simply too busy responding to each other to resume work. This is comparable to two people attempting to pass each other in a corridor: Alphonse moves to his left to let Gaston pass, while Gaston moves to his right to let Alphonse pass. Seeing that they are still blocking each other, Alphone moves to his right, while Gaston moves to his left.
 
+#### Guarded Blocks
+* threads often have to coordinate their actions
+* the most common coordination idiom is the guarded block which begins by polling a condition that must be true before the block can proceed
+* guardedJoy is a method that must not proceed until a shared variable 'joy' has been set by another thread.  In theory this method could loop until thee condition is satisfied (which is wasteful)
+```
+public void guardedJoy() {
+    // Simple loop guard. Wastes
+    // processor time. Don't do this!
+    while(!joy) {}
+    System.out.println("Joy has been achieved!");
+}
+```
+* invoking **Object.wait** suspends the current thread and is more efficient; invocation of wait does not return until another thread has issued a notification that some special event may have occurred
+* when wait is invoked the thread releases the lock aand suspends execution
+```
+public synchronized void guardedJoy() {
+    // This guard only loops once for each special event, which may not
+    // be the event we're waiting for.
+    while(!joy) {
+        try {
+            wait();
+        } catch (InterruptedException e) {}
+    }
+    System.out.println("Joy and efficiency have been achieved!");
+}
+```
 
+#### Immutable Objects
+* immutable objects are particularly useful in concurrent apps; since they cannot change state, they cannot be corrupted by thread interference or observed in an inconsistent state
+* no setters, fields are final and private
+
+#### High Level Concurrency Objects
+* higher-level building blocks are needed for more advanced tasks especially for massively concurrent apps
+
+Lock Objects
+* support locking idioms that simplify many concurrent apps using **Lock interface**
+* work like implicit locks in synchronized code
+* biggest advantage over implicit locks is their ability to back out of an attempt to acquire a lock
+
+Executors
+* large apps should separate thread management and creation from the rest of the app
+* objects that encapsulate these functions are known as executors
+
+Executor Interfaces
+1. Executor - simple interface that supports launching new tasks
+2. ExecutorService - subinterface of Executor which adds features that help manage the lifecycle both of individual tasks and the executor
+3. ScheduledExecutorService - subinterface of ExecutorService that supports future and/or periodic execution of tasks
+
+Thread pools
+
+Fork/Join 
+
+Concurrent collections
+* make it easier to manage large collections of data and greatly reduce the need for synchronization
+
+Atomic variables
+* have features that minimize synchronization and help avoid memory consistency errors
+* java.util.concurrent.atomic package defines classes that support atomic operations on single variables
+
+ThreadLocalRandom
+* provides efficient generation of pseudorandom numbers from multiple threads
 
 
 
