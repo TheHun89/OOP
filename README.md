@@ -20,14 +20,14 @@
 
 ### [Memory](https://www.baeldung.com/java-stack-heap)
 
-1.	**Stack Memory**
+**Stack Memory**
 * Used for static memory allocation and the execution of a thread
 * Contains primitive values specific to method and references to objects in heap
 * When a new method is called, a new block on top of the stack is created which contains values specific to that method
 * Access faster than heap and threadsafe
 * StackOverFlowError – memory is full
 
-2.	**Heap Space**
+**Heap Space**
 * Used for dynamic memory allocation for Java objects and runtime classes
 * New objects are always created in heap space and references stored in stack
 * OutOfMemoryError – heap space is full
@@ -38,6 +38,13 @@
 
 ### Garbage Collection
 Some object-oriented languages require that you keep track of all the objects you create and that you explicitly destroy them when they are no longer needed. Managing memory explicitly is tedious and error-prone. The Java platform allows you to create as many objects as you want (limited, of course, by what your system can handle), and you don't have to worry about destroying them. The Java runtime environment **deletes objects when it determines that they are no longer being used**. This process is called garbage collection.  An object is eligible for garbage collection when there are no more references to that object. References that are held in a variable are usually dropped when the variable goes out of scope. Or, you can explicitly drop an object reference by setting the variable to the special value null.
+
+[Baeldung - JVM Garbage Collectors](https://www.baeldung.com/jvm-garbage-collectors)
+
+**Memory Leaks**
+* [Memory Leaks](https://www.baeldung.com/java-memory-leaks)
+
+
 
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/unreference.png)
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/createObject.png)
@@ -872,7 +879,7 @@ Executor Interfaces
 
 Thread pools
 
-Fork/Join 
+Fork/Join
 
 Concurrent collections
 * make it easier to manage large collections of data and greatly reduce the need for synchronization
