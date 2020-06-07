@@ -42,8 +42,10 @@ Some object-oriented languages require that you keep track of all the objects yo
 [Baeldung - JVM Garbage Collectors](https://www.baeldung.com/jvm-garbage-collectors)
 
 ### Memory Leaks
-* [Baeldung - Memory Leaks](https://www.baeldung.com/java-memory-leaks)
-* A Memory Leak is a situation when there are objects present in the heap that are no longer used, but the garbage collector is unable to remove them from memory and, thus they are unnecessarily maintained.
+
+[Baeldung - Memory Leaks](https://www.baeldung.com/java-memory-leaks)
+
+A Memory Leak is a situation when there are objects present in the heap that are no longer used, but the garbage collector is unable to remove them from memory and, thus they are unnecessarily maintained.
 
 A memory leak is bad because it blocks memory resources and degrades system performance over time. And if not dealt with, the application will eventually exhaust its resources, finally terminating with a fatal java.lang.OutOfMemoryError.
 
@@ -60,7 +62,9 @@ The garbage collector removes unreferenced objects periodically, but it never co
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/super.png)
 
 
-Variable types – primitive(8) vs reference
+Data types – primitive(8) vs reference
+
+![Image](https://1.bp.blogspot.com/-bpbdwrvRSaw/VflqVT6GaxI/AAAAAAAADxU/BSi7bF7ef34/s1600/Primitive%2Bvs%2BReference%2BType%2BJava.png)
 
 **4 Variables:**
 1. Instance variables are created inside the class but outside the method. Instance variable doesn't get memory at compile time. It gets memory at runtime when an object or instance is created.
