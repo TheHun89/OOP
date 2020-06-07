@@ -105,7 +105,7 @@ Data types – primitive(8) vs reference
 * Continue - continue
 * Return – exit method
 
-You can use a construct called varargs to pass an arbitrary number of values to a method. You use varargs when you don't know how many of a particular type of argument will be passed to the method. It's a shortcut to creating an array manually (the previous method could have used varargs rather than an array).
+**Varargs** pass an arbitrary number of values to a method. You use varargs when you don't know how many of a particular type of argument will be passed to the method.
 ```
 public Polygon polygonFrom(Point... corners) {}
 ```
@@ -141,7 +141,7 @@ class Bike7{
 
 * Packages – built in and user defined; help avoid conflicts with same class names defined in different packages
 * Modifiers- access and non
-* There are many non-access modifiers, such as static, abstract, synchronized, native, volatile, transient, etc. Here, we are going to learn the access modifiers only.
+* There are many non-access modifiers, such as static, abstract, synchronized, native, volatile, transient, etc.
 
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/accessModifiers.png)
 
@@ -269,7 +269,7 @@ In this process, an overridden method is called through the reference variable o
 A method is overridden, not the data members, so runtime polymorphism can't be achieved by data members.
 
 ### Upcasting and Downcasting
-https://stackoverflow.com/questions/23414090/what-is-the-difference-between-up-casting-and-down-casting-with-respect-to-class
+[StackOverFlow - Up vs Down Casting](https://stackoverflow.com/questions/23414090/what-is-the-difference-between-up-casting-and-down-casting-with-respect-to-class)
 Upcasting is casting to a supertype, while downcasting is casting to a subtype. Upcasting is always allowed, but downcasting involves a type check and can throw a ClassCastException.  Upcasting is done automatically but downcasting needs to be done manually by programmer.
 A cast from a Dog to an Animal is an upcast, because a Dog is-a Animal. In general, you can upcast whenever there is an is-a relationship between two classes.
 Downcasting would be something like this:
