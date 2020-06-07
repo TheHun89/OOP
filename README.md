@@ -41,8 +41,16 @@ Some object-oriented languages require that you keep track of all the objects yo
 
 [Baeldung - JVM Garbage Collectors](https://www.baeldung.com/jvm-garbage-collectors)
 
-**Memory Leaks**
-* [Memory Leaks](https://www.baeldung.com/java-memory-leaks)
+### Memory Leaks
+* [Baeldung - Memory Leaks](https://www.baeldung.com/java-memory-leaks)
+* A Memory Leak is a situation when there are objects present in the heap that are no longer used, but the garbage collector is unable to remove them from memory and, thus they are unnecessarily maintained.
+
+A memory leak is bad because it blocks memory resources and degrades system performance over time. And if not dealt with, the application will eventually exhaust its resources, finally terminating with a fatal java.lang.OutOfMemoryError.
+
+There are two different types of objects that reside in Heap memory — referenced and unreferenced. Referenced objects are those who have still active references within the application whereas unreferenced objects don't have any active references.
+
+The garbage collector removes unreferenced objects periodically, but it never collects the objects that are still being referenced. This is where memory leaks can occur:
+![Image](https://www.baeldung.com/wp-content/uploads/2018/11/Memory-_Leak-_In-_Java.png)
 
 
 
