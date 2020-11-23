@@ -813,7 +813,7 @@ If count is an instance of SynchronizedCounter, then making these methods synchr
 * in the case of a static synchronized method a thread acquires the intrinsic lock for the Class object associated with the class, thus access to class's static fields is controlled by a lock that's distinct from the lock for any instance of the class
 
 Synchronized Statements
-* unlike synchronized methods, synchronized statements must specify the object that provides the intrinsic lock:
+* unlike synchronized methods, synchronized statements must specify the object that provides the intrinsic lock.  In this example, the addName method needs to synchronize changes to lastName and nameCount, but also needs to avoid synchronizing invocations of other objects' methods:
 
 ```
 public void addName(String name) {
