@@ -814,6 +814,7 @@ If count is an instance of SynchronizedCounter, then making these methods synchr
 
 Synchronized Statements
 * unlike synchronized methods, synchronized statements must specify the object that provides the intrinsic lock:
+
 ```public void addName(String name) {
     synchronized(this) {
         lastName = name;
