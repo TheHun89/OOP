@@ -828,13 +828,14 @@ public void addName(String name) {
 * Reentrant Synchronization - allowing a thread to acquire the same lock more than once (that it already owns)
 
 #### Atomic Access
-* general idea operations can't be interfered with by other threads; action either happens completely or not at all
+* action either happens completely or not at all
+* Atomic actions cannot be interleaved, so they can be used without fear of thread interference. However, this does not eliminate all need to synchronize atomic actions, because memory consistency errors are still possible
 
 Actions you can specify that are atomic:
 1. Reads and writes are atomic for reference variables and for most primitive variables (all types except long and double).
 2. Reads and writes are atomic for all variables declared volatile (including long and double variables).
 
-* Atomic actions cannot be interleaved, so they can be used without fear of thread interference. However, this does not eliminate all need to synchronize atomic actions, because memory consistency errors are still possible
+
 * **Volatile variables** reduces the risk of memory consistency errors, because any write to a volatile variable establishes a happens-before relationship with subsequent reads of that same variable. This means that changes to a volatile variable are always visible to other threads
 
 #### Liveness
