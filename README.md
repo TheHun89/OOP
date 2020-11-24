@@ -169,19 +169,22 @@ class Bike10{
 * Abstraction is hiding implementation and showing functionality.  Abstraction enables you to focus on what the object does instead of how it does it.  **Two ways – interface and abstract class.**
 
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/abstractClass.png)
-![Image](https://github.com/TheHun89/OOP/blob/master/images/abstractVsInterface.png)
 
+Interface
+- implements
+- fields implicitly declared as public, static and final, even if you don't specify those modifiers. can NOT explicitly define fields private. In essence, an interface may only have constant fields, not instance fields
+- methods implicitly public; also can be abstract, static or default; private methods in Java 9!
+- must use all methods in class implementing interface
+- can EXTEND another interface
 
+Abstract Class
+- extends
+- abstract and non-abstract methods 
+- can only extend one abstract class
+- can NOT be instantiated, but can have constructor
+- can extend another abstract class and implement multiple Java interfaces
 
-
-#### Abstract class vs Interface
-1.	Type of methods: Interface can have only abstract methods. Abstract class can have abstract and non-abstract methods. From Java 8, it can have default and static methods also.
-2.	Final Variables: Variables declared in a Java interface are by default final. An abstract class may contain non-final variables.
-3.	Type of variables: Abstract class can have final, non-final, static and non-static variables. Interface has only static and final variables.
-4.	Implementation: Abstract class can provide the implementation of interface. Interface can’t provide the implementation of abstract class.
-5.	Inheritance vs Abstraction: A Java interface can be implemented using keyword “implements” and abstract class can be extended using keyword “extends”.
-6.	Multiple implementation: An interface can extend another Java interface only, an abstract class can extend another Java class and implement multiple Java interfaces.
-7.	Accessibility of Data Members: Members of a Java interface are public by default. A Java abstract class can have class members like private, protected, etc.
+Key differences:  you can implement multiple interfaces but only one abstract class; abstract class is used when derived class shares core properties/behavior of the abstract class - interface inheritance is used when the classes share peripheral behavior, ones which do not necessarily define the derived class ie: Car and Truck extending Automobile but Car and GasScooter are better to implement an interface that uses fuel.
 
 Reasons to choose Interface
 
