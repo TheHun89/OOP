@@ -186,7 +186,6 @@ Abstract Class
 
 Key differences:  you can implement multiple interfaces but only one abstract class; abstract class is used when derived class shares core properties/behavior of the abstract class - interface inheritance is used when the classes share peripheral behavior, ones which do not necessarily define the derived class ie: Car and Truck extending Automobile but Car and GasScooter are better to implement an interface that uses fuel.
 
-Reasons to choose Interface
 
 ![Image](https://github.com/TheHun89/OOP/blob/master/images/choosingInterfaces.png)
 
@@ -250,7 +249,7 @@ obj.show();
 * **Method overloading** – change number of arguments OR change data types
 * **Method overriding** – subclass with same method as parent class (can’t override static method)
 
-* **Covariant return type** – method overriding where return type is different.  Below example A’s get returns A while B’s get returns B
+* **Covariant return type** – method overriding where return type is different.  Co-variant return type is based on **Liskov substitution principle**.  Below example A’s get returns A while B’s get returns B
 ```
 class A{  
 A get(){return this;}  
@@ -261,7 +260,7 @@ B1 get(){return this;}
 void message(){System.out.println("welcome to covariant return type");}  
 
 public static void main(String args[]){  
-new B1().get().message();  
+new B1().get().message();  // welcome to covariant return type
 }  
 }  
 ```
@@ -633,6 +632,7 @@ public void writeList() throws IOException, IndexOutOfBoundsException {
 ```
 
 **finally** – block at end of try/catch that always executes
+
 **try with resources** – resources closed when program is finished with them
 
 
