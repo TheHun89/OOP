@@ -88,7 +88,9 @@ Data types – primitive(8) vs reference
 ### Operator
 * Assignment (=)
 * Arithmetic (+, -, \*, /, %)
+* Modulus (11%4 is equal to 3)
 * Unary (+, -, ++, --, !)
+* Ternary (booleanExpression ? expression1 : expression2)
 * Equality/Relational (!=, ==, >, <. >=. <=)
 * Conditional (&&, ||)
 * Type Comparison (instanceof)
