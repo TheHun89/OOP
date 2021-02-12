@@ -431,17 +431,18 @@ public class A {
 Integer number = 100;   // autoboxing
 int inum = number;      // unboxing
 ```
+* Wrapper/Reference type can be null; primitives can not
 
-| Primitive type |	Wrapper class |
-|---|---|  
-| boolean	| Boolean |
-| byte	| Byte |
-| char	| Character |
-| float	| Float |
-| int	| Integer |
-| long	| Long |
-| short	| Short |
-| double |	Double |
+| Primitive type | Wrapper class |
+|----------------|---------------|  
+| boolean	     | Boolean       |
+| byte	     | Byte          |
+| char	     | Character     |
+| float	     | Float         |
+| int	           | Integer       |
+| long	     | Long          |
+| short	     | Short         |
+| double         | Double        |
 
 
 #### Casting:  Implicit (widen) vs Explicit (narrow) Conversion
