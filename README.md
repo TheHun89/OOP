@@ -327,8 +327,6 @@ a.eat();
 | It provides fast execution because the type of an object is determined at compile-time.	| It provides slower execution as compare to compile-time because the type of an object is determined at run-time. |
 | Compile-time polymorphism provides less flexibility because all the things are resolved at compile-time.	| Run-time polymorphism provides more flexibility because all the things are resolved at runtime. |
 
-![Image](https://github.com/TheHun89/OOP/blob/master/images/staticDynamicBinding.png)
-
 
 If there is any private, final or static method in a class, there is static binding.
 ```
