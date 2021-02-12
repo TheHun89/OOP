@@ -96,8 +96,12 @@ Data types – primitive(8) vs reference
 * Type Comparison (instanceof)
 * Bitwise, Bit Shift
 
-![Image](https://github.com/TheHun89/OOP/blob/master/images/codeBlock.png)
-
+```
+if (expression)
+  // statement or block
+else
+  // statement or block
+```
 * Expression (ie:  1*2)
 * Statement (ie: int sum = 1*2)
 * Block – zero or more statements surrounded by {}
