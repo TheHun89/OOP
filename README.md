@@ -322,7 +322,7 @@ a.eat();
 | compile-time polymorphism	| Runtime polymorphism |
 |---|---|
 | In compile-time polymorphism, call to a method is resolved at compile-time.	| In runtime polymorphism, call to an overridden method is resolved at runtime. |
-| It is also known as static binding, early binding, or overloading.	| It is also known as dynamic binding, late binding, overriding, or dynamic method dispatch. |
+| static binding	| dynamic binding/dynamic method dispatch. |
 | Overloading is a way to achieve compile-time polymorphism in which, we can define multiple methods or constructors with different signatures.	| Overriding is a way to achieve runtime polymorphism in which, we can redefine some particular method or variable in the derived class. By using overriding, we can give some specific implementation to the base class properties in the derived class. |
 | It provides fast execution because the type of an object is determined at compile-time.	| It provides slower execution as compare to compile-time because the type of an object is determined at run-time. |
 | Compile-time polymorphism provides less flexibility because all the things are resolved at compile-time.	| Run-time polymorphism provides more flexibility because all the things are resolved at runtime. |
