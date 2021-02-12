@@ -149,8 +149,12 @@ class Bike7{
 * Modifiers- access and non
 * There are many non-access modifiers, such as static, abstract, synchronized, native, volatile, transient, etc.
 
-![Image](https://github.com/TheHun89/OOP/blob/master/images/accessModifiers.png)
-
+| Modifier  | Class  |  Package  |  Subclass  |  Global
+|-----------|--------|-----------|------------|--------|    
+|  Public   | x      | x         | x          | x      |
+|  Protected| x      | x         | x          |        |
+|  Default  | x      | x         |            |        |
+|  Private  | x      |           |            |        |
 
 #### Other modifiers:
 *	Static - Static fields or methods are class members, whereas non-static ones are object members. Class members don't need any instance to be invoked;  You can not have a TOP level static class; you can have static nested classes
@@ -182,6 +186,7 @@ Interface
 - methods implicitly public; also can be abstract, static or default; private methods in Java 9!
 - must use all methods in class implementing interface
 - can EXTEND another interface
+- used to achieve loose coupling
 
 Abstract Class
 - extends
@@ -192,8 +197,6 @@ Abstract Class
 
 Key differences:  you can implement multiple interfaces but only one abstract class; abstract class is used when derived class shares core properties/behavior of the abstract class - interface inheritance is used when the classes share peripheral behavior, ones which do not necessarily define the derived class ie: Car and Truck extending Automobile but Car and GasScooter are better to implement an interface that uses fuel.
 
-
-![Image](https://github.com/TheHun89/OOP/blob/master/images/choosingInterfaces.png)
 
 
 ```
